@@ -4803,7 +4803,7 @@ hr.title-line {
 }
 
 .text-light {
-  color: var(--light-color) !important;
+  color: var(--yellow-color) !important;
 }
 
 .text-yellow {
@@ -9732,12 +9732,12 @@ ol.wp-block-rss {
 /* footer 1 ---------------------------------- */
 .footer-layout1 {
   background: var(--title-color);
-  padding-bottom: 80px;
+  /* padding-bottom: 80px; */
   --body-color: #C6C9D4;
 }
 
 .footer-layout1 .footer-top {
-  padding: 80px 0;
+  padding: 50px 0;
   /* Large devices */
   /* Medium devices */
 }
