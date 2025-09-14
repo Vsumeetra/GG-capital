@@ -9428,7 +9428,7 @@ ol.wp-block-rss {
 }
 
 .widget-area {
-  padding-top: 120px;
+  padding-top: 70px;
   padding-bottom: 70px;
 }
 
@@ -27331,7 +27331,8 @@ span.select2-selection.select2-selection--single:focus {
 
 .space,
 .space-bottom {
-  padding-bottom: var(--section-space);
+  /* padding-bottom: var(--section-space); */
+  padding-bottom: 50px;
 }
 
 .space-extra,
