@@ -2595,7 +2595,7 @@ textarea.is-invalid {
   width: 100%;
   max-width: 310px;
   background-color: #fff;
-  border-right: 3px solid var(--theme-color);
+  border-right: 3px none var(--theme-color);
   height: 100%;
   position: relative;
   left: -110%;

@@ -54,7 +54,74 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
+<style>
+/* ==============================
+   Mobile Menu Wrapper
+   ============================== */
+.th-menu-wrapper {
+    position: fixed;
+    top: 0;
+    right: -100%;                /* hidden by default */
+    width: 100%;
+    max-width: 280px;            /* prevent overflow */
+    height: 100vh;
+    background: #fff;
+    box-shadow: -2px 0 6px rgba(0,0,0,0.15);
+    padding: 60px 20px 20px;     /* space for close button */
+    transition: right 0.3s ease-in-out;
+    z-index: 9999;
+    overflow-y: auto;            /* scrollable content */
+    overflow-x: hidden;          /* prevent sideways scroll */
+}
 
+/* Active state (slide-in) */
+.th-menu-wrapper.active {
+    right: 0;
+}
+
+/* ==============================
+   Close Button
+   ============================== */
+.th-menu-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 28px;
+    color: #131d38;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ==============================
+   Mobile Dropdown Fix
+   ============================== */
+@media (max-width: 991px) {
+    .main-menu ul,
+    .main-menu .sub-menu {
+        width: 100% !important;
+        max-width: 100% !important;
+        position: static !important;
+        box-shadow: none !important;
+    }
+
+    .main-menu .sub-menu li {
+        padding-left: 15px; /* indent children */
+    }
+}
+
+/* ==============================
+   Global Scroll Control
+   ============================== */
+html, body {
+    overflow-x: hidden !important;  /* no horizontal scroll */
+}
+
+body.menu-open {
+    overflow: hidden; /* lock background scroll when menu is open */
+}
+
+</style>
 <body>
 
     <!--[if lte IE 9]>
@@ -93,242 +160,159 @@
             <button type="submit"><i class="fal fa-search"></i></button>
         </form>
     </div> -->
+   
     <!--==============================
-    Mobile Menu
-  ============================== -->
-    <div class="th-menu-wrapper style2">
-        <div class="th-menu-area text-center">
-            <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
-            <div class="mobile-logo">
-                <a href="index.html"><img src="assets/img/gglogo.png" alt="GG"></a>
-            </div>
-            <div class="th-mobile-menu">
-                <ul>
-                    <li class="menu-item-has-children">
-                        <a href="index.html">Home</a>
-                        <!-- <ul class="sub-menu">
-                            <li class="menu-item-has-children">
-                                <a href="#">Multipage</a>
-                                <ul class="sub-menu">
-                                    <li><a href="index.html">Home I (Corporate)</a></li>
-                                    <li><a href="home-2.html">Home II (Web Agency)</a></li>
-                                    <li><a href="home-3.html">Home III (Portfolio)</a></li>
-                                    <li><a href="home-4.html">Home IV (Business)</a></li>
-                                    <li><a href="home-5.html">Home V (Collaborate)</a></li>
-                                </ul>
+	Header Area
+==============================-->
+<header class="th-header header-layout4">
+    <!-- ================= Desktop Header ================= -->
+    <div class="desktop-navbar d-none d-xl-block">
+        <!-- Dark Header -->
+        <div class="header-top" style="background-color: #131d38; padding: 10px 0;">
+            <div class="container">
+                <div class="row align-items-center justify-content-between">
+                    <!-- Logo -->
+                    <div class="col-auto">
+                        <a href="index.html">
+                            <img src="assets/img/gglog.png" alt="GG Capital" style="width: 150px; height: auto;">
+                        </a>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="col-auto">
+                        <ul class="list-unstyled d-flex align-items-center mb-0" style="gap: 20px;">
+                            <li class="d-flex align-items-center">
+                                <i class="fas fa-envelope" style="margin-right: 8px; color: #e6bb31;"></i>
+                                <a href="mailto:gaurav@ggcapitalavenue.com" class="text-light">gaurav@ggcapitalavenue.com</a>
                             </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Onepage</a>
-                                <ul class="sub-menu">
-                                    <li><a href="home-1-op.html">Home I (Corporate)</a></li>
-                                    <li><a href="home-2-op.html">Home II (Web Agency)</a></li>
-                                    <li><a href="home-3-op.html">Home III (Portfolio)</a></li>
-                                    <li><a href="home-4-op.html">Home IV (Business)</a></li>
-                                    <li><a href="home-5-op.html">Home V (Collaborate)</a></li>
-                                </ul>
-                            </li> -->
-                            <!-- <li class="menu-item-has-children">
-                <a href="#">RTL</a>
-                <ul class="sub-menu">
-                    <li><a href="home-1-rtl.html">Home I (Corporate)</a></li>
-                    <li><a href="home-2-rtl.html">Home II (Web Agency)</a></li>
-                    <li><a href="home-3-rtl.html">Home III (Portfolio)</a></li>
-                    <li><a href="home-4-rtl.html">Home IV (Business)</a></li>
-                    <li><a href="home-5-rtl.html">Home V (Collaborate)</a></li>
-                </ul>
-            </li> -->
-                        <!-- </ul> -->
-                    </li>
+                            <li class="d-flex align-items-center">
+                                <i class="fas fa-phone-alt" style="margin-right: 8px; color: #e6bb31;"></i>
+                                <a href="tel:+918080766566" class="text-light">+91-80807 66566</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- White Navbar with Enquire Now inside -->
+        <div class="menu-area bg-white">
+            <div class="container">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col">
+                        <nav class="main-menu">
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about.html">About Us</a></li>
+
+                                <!-- Insurance -->
+                                <li class="menu-item-has-children">
+                                    <a href="insurance.html">Insurance</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="insurance.html#life-insurance">Life Insurance</a></li>
+                                        <li><a href="insurance.html#health-insurance">Health Insurance</a></li>
+                                        <li><a href="insurance.html#motor-insurance">Motor Insurance</a></li>
+                                        <li><a href="insurance.html#property-insurance">Property & Marine Insurance</a></li>
+                                        <li><a href="insurance.html#group-insurance">Group Policies & Cyber Insurance</a></li>
+                                    </ul>
+                                </li>
+
+                                <!-- Loans -->
+                                <li class="menu-item-has-children">
+                                    <a href="loans.html">Loans</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="loans.html#personal-loan">Personal Loan</a></li>
+                                        <li><a href="loans.html#business-loan">Business Loan</a></li>
+                                        <li><a href="loans.html#home-loan">Home Loan</a></li>
+                                        <li><a href="loans.html#car-loan">Car Loan</a></li>
+                                        <li><a href="loans.html#mortgage-loan">Mortgage / Loan Against Property</a></li>
+                                        <li><a href="loans.html#education-loan">Education Loan</a></li>
+                                        <li><a href="loans.html#gold-loan">Gold Loan</a></li>
+                                    </ul>
+                                </li>
+
+                                <!-- Investments -->
+                                <li class="menu-item-has-children">
+                                    <a href="Mutual.html">Investments</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="Mutual.html#mutual-fund-advisory">Mutual Fund Advisory</a></li>
+                                        <li><a href="Mutual.html#pms">Portfolio Management Services (PMS)</a></li>
+                                        <li><a href="Mutual.html#aifs">Alternative Investment Funds (AIFs)</a></li>
+                                        <li><a href="Mutual.html#fixed-income">Fixed Income Products</a></li>
+                                        <li><a href="Mutual.html#tax-efficient">Tax-Efficient Investment Planning</a></li>
+                                        <li><a href="Mutual.html#swp">Systematic Withdrawal Plans (SWP)</a></li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="contact.html">Contact Us</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <!-- Enquire Now Button inside Navbar -->
+                    <div class="col-auto">
+                        <div class="header-button">
+                            <a href="contact.html#contact-form" class="th-btn style10 btn-radius-8">Get Enquire Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= Mobile Header ================= -->
+    <div class="mobile-header d-xl-none">
+        <div class="mobile-top bg-dark text-light d-flex justify-content-between align-items-center p-2">
+            <a href="index.html">
+                <img src="assets/img/gglogo.png" alt="GG" style="height:40px;">
+            </a>
+            <button class="th-menu-toggle" style="background:none;border:none;font-size:24px;color:#fff;">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Slide-in Menu -->
+        <div class="th-menu-wrapper">
+            <div class="th-menu-area">
+                <button class="th-menu-close">&times;</button>
+                <ul class="th-mobile-menu">
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li class="menu-item-has-children">
                         <a href="insurance.html">Insurance</a>
                         <ul class="sub-menu">
-                            <!-- <li><a href="service.html">Services</a></li> -->
-                            <li><a href="insurance.html#life-insurance"> Life Insurance</a></li>
+                            <li><a href="insurance.html#life-insurance">Life Insurance</a></li>
                             <li><a href="insurance.html#health-insurance">Health Insurance</a></li>
                             <li><a href="insurance.html#motor-insurance">Motor Insurance</a></li>
                             <li><a href="insurance.html#property-insurance">Property & Marine Insurance</a></li>
                             <li><a href="insurance.html#group-insurance">Group Policies & Cyber Insurance</a></li>
                         </ul>
                     </li>
-                    <!-- LOANS -->
-                                    <li class="menu-item-has-children">
-                                     <a href="loans.html"> Loans</a>
-                                     <ul class="sub-menu">
+                    <li class="menu-item-has-children">
+                        <a href="loans.html">Loans</a>
+                        <ul class="sub-menu">
                             <li><a href="loans.html#personal-loan">Personal Loan</a></li>
-        <li><a href="loans.html#business-loan">Business Loan</a></li>
-        <li><a href="loans.html#home-loan">Home Loan</a></li>
-        <li><a href="loans.html#car-loan">Car Loan</a></li>
-        <li><a href="loans.html#mortgage-loan">Mortgage / Loan Against Property</a></li>
-        <li><a href="loans.html#education-loan">Education Loan</a></li>
-        <li><a href="loans.html#gold-loan">Gold Loan</a></li>
-                         </ul>
-                          </li>
-
-                          <!-- INVESTMENTS -->
-                           
-                           <li class="menu-item-has-children">
+                            <li><a href="loans.html#business-loan">Business Loan</a></li>
+                            <li><a href="loans.html#home-loan">Home Loan</a></li>
+                            <li><a href="loans.html#car-loan">Car Loan</a></li>
+                            <li><a href="loans.html#mortgage-loan">Mortgage / Loan Against Property</a></li>
+                            <li><a href="loans.html#education-loan">Education Loan</a></li>
+                            <li><a href="loans.html#gold-loan">Gold Loan</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children">
                         <a href="Mutual.html">Investments</a>
                         <ul class="sub-menu">
-                            <!-- <li><a href="service.html">Services</a></li> -->
-                            <li><a href="#mutual-fund-advisory">Mutual Fund Advisory</a></li>
-        <li><a href="Mutual.html#pms">Portfolio Management Services (PMS)</a></li>
-        <li><a href="Mutual.html#aifs">Alternative Investment Funds (AIFs)</a></li>
-        <li><a href="Mutual.html#fixed-income">Fixed Income Products</a></li>
-        <li><a href="Mutual.html#tax-efficient">Tax-Efficient Investment Planning</a></li>
-        <li><a href="Mutual.html#swp">Systematic Withdrawal Plans (SWP)</a></li>
+                            <li><a href="Mutual.html#mutual-fund-advisory">Mutual Fund Advisory</a></li>
+                            <li><a href="Mutual.html#pms">Portfolio Management Services (PMS)</a></li>
+                            <li><a href="Mutual.html#aifs">Alternative Investment Funds (AIFs)</a></li>
+                            <li><a href="Mutual.html#fixed-income">Fixed Income Products</a></li>
+                            <li><a href="Mutual.html#tax-efficient">Tax-Efficient Investment Planning</a></li>
+                            <li><a href="Mutual.html#swp">Systematic Withdrawal Plans (SWP)</a></li>
                         </ul>
                     </li>
-                           <!-- <li class="menu-item-has-children">
-                                     <a href="#"> Investment</a> -->
-                                     <!-- <ul class="sub-menu">
-                            <li><a href="insurance.html">Insurance</a></li>
-                            <li><a href="loans.html">Loans</a></li>
-                            <li><a href="Mutual.html">Mutual Funds Investments</a></li>
-                         </ul> -->
-                          <!-- </li> -->
-                    <!-- <li class="menu-item-has-children">
-                        <a href="#">Pages</a>
-                        <ul class="sub-menu">
-                            <li class="menu-item-has-children">
-                                <a href="#">Shop</a>
-                                <ul class="sub-menu">
-                                    <li><a href="shop.html">Shop</a></li>
-                                    <li><a href="shop-details.html">Shop Details</a></li>
-                                    <li><a href="cart.html">Cart Page</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="wishlist.html">Wishlist</a></li>
-                                </ul>
-                            </li> -->
-                            <!-- <li><a href="project.html">Portfolio</a></li>
-                            <li><a href="project-details.html">Portfolio Details</a></li>
-                            <li><a href="team.html">Our Team</a></li>
-                            <li><a href="team-details.html">Team Details</a></li>
-                            <li><a href="pricing.html">Pricing</a></li>
-                            <li><a href="faq.html">FAQS</a></li>
-                            <li><a href="error.html">Error Page</a></li> -->
-                        </ul>
-                    </li>
-                    <!-- <li class="menu-item-has-children">
-                        <a href="#">Blog</a>
-                        <ul class="sub-menu">
-                            <li><a href="blog.html">Blog Standard</a></li>
-                            <li><a href="blog-2.html">Blog Grid</a></li>
-                            <li><a href="blog-details.html">Blog Details with Sidebar</a></li>
-                            <li><a href="blog-details-2.html">Blog Details without Sidebar</a></li>
-                        </ul>
-                    </li> -->
-                    <li>
-                        <a href="contact.html">Contact Us</a>
-                    </li>
+                    <li><a href="contact.html">Contact Us</a></li>
                 </ul>
-            </div>
-        </div>
-    </div>
-    <!-- <div class="color-scheme-wrap active">
-        <button class="switchIcon"><i class="fa-solid fa-palette"></i></button>
-        <h3 class="color-scheme-wrap-title text-center">Color Switcher</h3>
-        <div class="color-switch-btns">
-            <button data-color="#FF4F38"><i class="fa-solid fa-droplet"></i></button>
-            <button data-color="#3282FB"><i class="fa-solid fa-droplet"></i></button>
-            <button data-color="#563BFB"><i class="fa-solid fa-droplet"></i></button>
-            <button data-color="#27AE60"><i class="fa-solid fa-droplet"></i></button>
-            <button data-color="#FF7E02"><i class="fa-solid fa-droplet"></i></button>
-        </div>
-    </div> -->
-    <!--==============================
-	Header Area
-==============================-->
-<header class="th-header header-layout4">
-    <!-- Dark Header -->
-<div class="header-top" style="background-color: #131d38; padding: 10px 0;">
-    <div class="container">
-        <div class="row align-items-center justify-content-between">
-            <!-- Logo -->
-            <div class="col-auto">
-                <a href="index.html">
-                    <img src="assets/img/gglog.png" alt="GG Capital" style="width: 150px; height: auto;">
-                </a>
-            </div>
-
-            <!-- Contact Info -->
-            <div class="col-auto">
-               <ul class="list-unstyled d-flex align-items-center mb-0" style="gap: 20px;">
-    <li class="d-flex align-items-center">
-        <i class="fas fa-envelope" style="margin-right: 8px; color: #e6bb31;"></i>
-        <a href="mailto:gaurav@ggcapitalavenue.com" class="text-light">gaurav@ggcapitalavenue.com</a>
-    </li>
-    <li class="d-flex align-items-center">
-        <i class="fas fa-phone-alt" style="margin-right: 8px; color: #e6bb31;"></i>
-        <a href="tel:+918080766566" class="text-light">+91-80807 66566</a>
-    </li>
-</ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-    <!-- White Navbar with Enquire Now inside -->
-    <div class="menu-area bg-white">
-        <div class="container">
-            <div class="row align-items-center justify-content-between">
-                <div class="col">
-                    <nav class="main-menu">
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About Us</a></li>
-
-                            <!-- Insurance -->
-                            <li class="menu-item-has-children">
-                                <a href="insurance.html">Insurance</a>
-                                <ul class="sub-menu">
-                                    <li><a href="insurance.html#life-insurance">Life Insurance</a></li>
-                                    <li><a href="insurance.html#health-insurance">Health Insurance</a></li>
-                                    <li><a href="insurance.html#motor-insurance">Motor Insurance</a></li>
-                                    <li><a href="insurance.html#property-insurance">Property & Marine Insurance</a></li>
-                                    <li><a href="insurance.html#group-insurance">Group Policies & Cyber Insurance</a></li>
-                                </ul>
-                            </li>
-
-                            <!-- Loans -->
-                            <li class="menu-item-has-children">
-                                <a href="loans.html">Loans</a>
-                                <ul class="sub-menu">
-                                    <li><a href="loans.html#personal-loan">Personal Loan</a></li>
-                                    <li><a href="loans.html#business-loan">Business Loan</a></li>
-                                    <li><a href="loans.html#home-loan">Home Loan</a></li>
-                                    <li><a href="loans.html#car-loan">Car Loan</a></li>
-                                    <li><a href="loans.html#mortgage-loan">Mortgage / Loan Against Property</a></li>
-                                    <li><a href="loans.html#education-loan">Education Loan</a></li>
-                                    <li><a href="loans.html#gold-loan">Gold Loan</a></li>
-                                </ul>
-                            </li>
-
-                            <!-- Investments -->
-                            <li class="menu-item-has-children">
-                                <a href="Mutual.html">Investments</a>
-                                <ul class="sub-menu">
-                                    <li><a href="Mutual.html#mutual-fund-advisory">Mutual Fund Advisory</a></li>
-                                    <li><a href="Mutual.html#pms">Portfolio Management Services (PMS)</a></li>
-                                    <li><a href="Mutual.html#aifs">Alternative Investment Funds (AIFs)</a></li>
-                                    <li><a href="Mutual.html#fixed-income">Fixed Income Products</a></li>
-                                    <li><a href="Mutual.html#tax-efficient">Tax-Efficient Investment Planning</a></li>
-                                    <li><a href="Mutual.html#swp">Systematic Withdrawal Plans (SWP)</a></li>
-                                </ul>
-                            </li>
-
-                            <li><a href="contact.html">Contact Us</a></li>
-                        </ul>
-                    </nav>
-                </div>
-
-                <!-- Enquire Now Button inside Navbar -->
-               <div class="col-auto d-none d-xl-block">
-                            <div class="header-button">
-                                <a href="contact.html#contact-form" class="th-btn style10 btn-radius-8">Get Enquire Now</a>
-                            </div>
-                        </div>
             </div>
         </div>
     </div>
@@ -1561,6 +1545,25 @@ Price Area
 
     <!-- Main Js File -->
     <script src="assets/js/main.js"></script>
+
+     <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const toggleBtn = document.querySelector(".th-menu-toggle");
+    const closeBtn = document.querySelector(".th-menu-close");
+    const menuWrapper = document.querySelector(".th-menu-wrapper");
+    const body = document.body;
+
+    toggleBtn.addEventListener("click", () => {
+        menuWrapper.classList.add("active");
+        body.classList.add("menu-open"); // disable scroll
+    });
+
+    closeBtn.addEventListener("click", () => {
+        menuWrapper.classList.remove("active");
+        body.classList.remove("menu-open"); // re-enable scroll
+    });
+});
+</script>
        <!-- <---floating btns-----> 
 <!-- Floating call-icon -->
 <a href="tel:8080766566" class="call-float">
