@@ -26632,11 +26632,11 @@ span.select2-selection.select2-selection--single:focus {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 68px;
+  gap: 8px;
 }
 
 .story-list-wrap .single-story-list:not(:last-child) {
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .story-list-wrap .single-story-list .story-date {
@@ -27332,7 +27332,7 @@ span.select2-selection.select2-selection--single:focus {
 .space,
 .space-bottom {
   /* padding-bottom: var(--section-space); */
-  padding-bottom: 50px;
+  padding-bottom: 90px;
 }
 
 .space-extra,
