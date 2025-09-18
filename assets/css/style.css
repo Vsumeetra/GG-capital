@@ -2533,6 +2533,7 @@ textarea.is-invalid {
   color: var(--theme-color);
   opacity: 0;
   cursor: none;
+  display: none !important;
 }
 
 .slider-drag-cursor.active {
